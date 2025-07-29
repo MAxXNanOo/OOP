@@ -9,8 +9,17 @@ public class Main {
         ic.add(p1);
         ic.add(p2);
         ic.add(p3);
+        // ic.add(p1);
+        // ic.add(p1);
+        // ic.add(p2);
+        // ic.add(p3);
+        // ic.add(p2);
+        // ic.add(p2);
+        // ic.add(p1);
+        // ic.add(p3);
 
         Cashier c = new Cashier("John Doe");
         c.printReceipt(ic);
+
     }
 }
