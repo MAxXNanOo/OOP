@@ -186,27 +186,100 @@ public class Calculator extends JFrame implements ActionListener{
             arr2[++sizeNumber] = new String(tmp).trim();
 
 
-            System.out.printf("\n\n\n\n");
-            for( ; sizeNumber>-1 ; sizeNumber--){
-                System.out.println(arr2[sizeNumber]);
-            }
+//            System.out.printf("\n\n\n\n");
+//            for( ; sizeNumber>-1 ; sizeNumber--){
+//                System.out.println(arr2[sizeNumber]);
+//            }
+
 
 
 
             //รอทำ prefix เเละ postfix
-//            double [] numbers = new double[sizeNumber];
-//            int topNumber = -1;
-//            for(int i=0 ; i<=sizeNumber ; i++){
-//                if(arr2[i].matches("[+,--,*,/]")){
-//                    switch(arr2[i]){
-//                        case "+":
-//                            top
-//                    }
-//                }
-//                else{
-//                   numbers[++topNumber] = Double.parseDouble(arr2[i]);
-//                }
+            String [] prefix = new String[sizeNumber+1];
+            String [] tmpMath = new String[sizeNumber+1];
+            int topPrefix = -1, topTmpMath = -1;
+
+
+            for(int i=0 ; i<=sizeNumber ; i++){
+                if(arr2[i].matches("[+,--,*,/]")){
+                    System.out.println(arr2[i]);
+                    switch(arr2[i]){
+                        case "*": case "/":
+                            while(topTmpMath>-1 && tmpMath[topTmpMath].matches("[*,/]")){
+                                prefix[++topPrefix] =  tmpMath[topTmpMath--];
+                            }
+                            break;
+
+                            case "+": case "-":
+                                    while(topTmpMath>-1 && tmpMath[topTmpMath].matches("[+,--,*,/]")){
+                                        prefix[++topPrefix] = tmpMath[topTmpMath--];
+                                    }
+                                break;
+                    }
+                    tmpMath[++topTmpMath] = arr2[i];
+                }
+                else{
+                    System.out.println("set" + arr2[i]);
+                   prefix[++topPrefix] = arr2[i];
+                }
+            }
+
+            while(topTmpMath > -1){
+                ++topPrefix;
+                prefix[topPrefix] = tmpMath[topTmpMath];
+//                System.out.println("-->" + tmpMath[topTmpMath]);
+                topTmpMath--;
+            }
+
+            System.out.printf("\n\n\n\n");
+            for(int i=0 ; i<prefix.length ; i++){
+                System.out.printf(prefix[i]);
+            }
+
+
+            float [] numbers = new float[sizeNumber+1];
+            String [] postfix = new String[prefix.length];
+            int topNumber = -1, topPostfix = -1;
+
+//            for(int i=0 ; i<=topPrefix ; i++){
+//                numbers[++topNumber] = Float.parseFloat(prefix[i]);
 //            }
+
+            for(int i=0 ; i<=topPrefix ; i++){
+                switch(prefix[i]){
+                    case "+":
+//                        System.out.printf("\n%f + %f",numbers[topNumber],numbers[topNumber-1]);
+                        numbers[topNumber-1] = numbers[topNumber-1] + numbers[topNumber];
+                        topNumber--;
+                        break;
+
+                    case "-":
+                        numbers[topNumber-1] = numbers[topNumber-1] - numbers[topNumber];
+                        topNumber--;
+                        break;
+
+                    case "*":
+                        numbers[topNumber-1] = numbers[topNumber-1] * numbers[topNumber];
+                        topNumber--;
+                        break;
+
+                    case "/":
+                        if(numbers[topNumber] == 0){
+                            labelsum.setText("Bro WTF");
+                        }
+                        else{
+                            numbers[topNumber-1] = numbers[topNumber-1] / numbers[topNumber];
+                            topNumber--;
+                        }
+                        break;
+
+                    default:
+                            numbers[++topNumber] = Float.parseFloat(prefix[i]);
+                }
+            }
+
+            labelbefore.setText(new String(String.valueOf(numbers[0])));
+            labelsum.setText(new String(String.valueOf(numbers[0])));
 
         });
 
