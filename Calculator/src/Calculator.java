@@ -245,41 +245,49 @@ public class Calculator extends JFrame implements ActionListener{
 //                numbers[++topNumber] = Float.parseFloat(prefix[i]);
 //            }
 
-            for(int i=0 ; i<=topPrefix ; i++){
-                switch(prefix[i]){
-                    case "+":
+            try{
+                for(int i=0 ; i<=topPrefix ; i++){
+                    switch(prefix[i]){
+                        case "+":
 //                        System.out.printf("\n%f + %f",numbers[topNumber],numbers[topNumber-1]);
-                        numbers[topNumber-1] = numbers[topNumber-1] + numbers[topNumber];
-                        topNumber--;
-                        break;
-
-                    case "-":
-                        numbers[topNumber-1] = numbers[topNumber-1] - numbers[topNumber];
-                        topNumber--;
-                        break;
-
-                    case "*":
-                        numbers[topNumber-1] = numbers[topNumber-1] * numbers[topNumber];
-                        topNumber--;
-                        break;
-
-                    case "/":
-                        if(numbers[topNumber] == 0){
-                            labelsum.setText("Bro WTF");
-                        }
-                        else{
-                            numbers[topNumber-1] = numbers[topNumber-1] / numbers[topNumber];
+                            numbers[topNumber-1] = numbers[topNumber-1] + numbers[topNumber];
                             topNumber--;
-                        }
-                        break;
+                            break;
 
-                    default:
+                        case "-":
+                            numbers[topNumber-1] = numbers[topNumber-1] - numbers[topNumber];
+                            topNumber--;
+                            break;
+
+                        case "*":
+                            numbers[topNumber-1] = numbers[topNumber-1] * numbers[topNumber];
+                            topNumber--;
+                            break;
+
+                        case "/":
+                            if(numbers[topNumber] == 0){
+                                labelsum.setText("Bro WTF");
+                            }
+                            else{
+                                numbers[topNumber-1] = numbers[topNumber-1] / numbers[topNumber];
+                                topNumber--;
+                            }
+                            break;
+
+                        default:
                             numbers[++topNumber] = Float.parseFloat(prefix[i]);
+                    }
+
+                    labelbefore.setText(new String(String.valueOf(numbers[0])));
+                    labelsum.setText(new String(String.valueOf(numbers[0])));
                 }
+            }catch(Exception Error){
+                labelsum.setText(";-;  ?");
+                labelbefore.setText("");
+                System.out.println(Error.getMessage());
             }
 
-            labelbefore.setText(new String(String.valueOf(numbers[0])));
-            labelsum.setText(new String(String.valueOf(numbers[0])));
+
 
         });
 
