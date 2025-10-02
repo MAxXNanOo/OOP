@@ -1,0 +1,2 @@
+dog food, 500.0, 2
+cat food, 300.0, 1

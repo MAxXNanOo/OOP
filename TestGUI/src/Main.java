@@ -1,13 +1,72 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-void main() {
-    //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-    // to see how IntelliJ IDEA suggests fixing it.
-    IO.println(String.format("Hello and welcome!"));
+import Sidebar.Sidebar;
 
-    for (int i = 1; i <= 5; i++) {
-        //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-        // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-        IO.println("i = " + i);
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.Objects;
+
+public class Main extends JFrame {
+    private CardLayout cardLayout;
+    private JPanel cardPanel;
+
+    public Main() {
+        setTitle("CardLayout Example");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(600, 400);
+        setLocationRelativeTo(null); // จัดให้อยู่กลางจอ
+
+        JPanel panel = new JPanel();
+        JButton button = new JButton("Click Me");
+        panel.add(button);
+
+
+
+
+
+        // สร้าง sidebar
+        JPanel sidebar = new JPanel();
+        sidebar.setBackground(Color.DARK_GRAY);
+        sidebar.setPreferredSize(new Dimension(50, getHeight()));
+        sidebar.setLayout(new BoxLayout(sidebar, BoxLayout.Y_AXIS));
+        // เพิ่ม icon หรือปุ่มจำลอง
+        JLabel iconLabel = new JLabel("🏠", SwingConstants.CENTER);
+        iconLabel.setForeground(Color.WHITE);
+        iconLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        sidebar.add(Box.createVerticalStrut(20)); // ระยะห่างด้านบน
+        sidebar.add(iconLabel);
+        this.sidebar.addMouseListener(new MouseAdapter() {
+            {
+                Objects.requireNonNull(Sidebar.this);
+            }
+
+            public void mouseEntered(MouseEvent e) {
+                Sidebar.this.expandSidebar();
+            }
+
+            public void mouseExited(MouseEvent e) {
+                if (!Sidebar.this.sidebar.getBounds().contains(e.getPoint())) {
+                    Sidebar.this.collapseSidebar();
+                }
+
+            }
+        });
+
+
+
+
+        add(sidebar,  BorderLayout.WEST);
+        add(panel);
+
+
+        setVisible(true);
+    }
+
+
+
+
+
+    public static void main(String[] args) {
+        // เรียกใช้ GUI ใน Event Dispatch Thread
+        SwingUtilities.invokeLater(Main::new);
     }
 }
