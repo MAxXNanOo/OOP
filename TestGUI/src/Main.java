@@ -34,7 +34,7 @@ public class Main extends JFrame {
         iconLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         sidebar.add(Box.createVerticalStrut(20)); // ระยะห่างด้านบน
         sidebar.add(iconLabel);
-        this.sidebar.addMouseListener(new MouseAdapter() {
+        sidebar.addMouseListener(new MouseAdapter() {
             {
                 Objects.requireNonNull(Sidebar.this);
             }

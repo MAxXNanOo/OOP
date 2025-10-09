@@ -2,7 +2,8 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.Stack;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 
 
 public class Calculator extends JFrame implements ActionListener{
@@ -315,7 +316,28 @@ public class Calculator extends JFrame implements ActionListener{
         button.setFocusPainted(false);
         button.setOpaque(true);
         button.setBackground(new Color(70,70,70));
+//        button.setBorder(new RoundedBorder(20));
     }
+//
+//    class RoundedBorder implements Border {
+//        private int radius;
+//
+//        RoundedBorder(int radius) {
+//            this.radius = radius;
+//        }
+//        @Override
+//        public Insets getBorderInsets(Component c) {
+//            return new Insets(radius+1,radius+1,radius+2,radius);
+//        }
+//        @Override
+//        public boolean isBorderOpaque() {
+//            return true;
+//        }
+//        @Override
+//        public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+//            g.drawRoundRect(x, y, width-1, height-1, radius, radius);
+//        }
+//    }
 
     public static void main(String[] args) {
         new Calculator("Calculator");
