@@ -9,5 +9,5 @@ public class MineSweeperConstants {
     public static final int COLS = 20;
     
     /** Default number of mines for the game */
-    public static final int NUM_MINES = 10;
+    public static final int NUM_MINES = 40;
 }
