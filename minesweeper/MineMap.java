@@ -1,8 +1,9 @@
-package minesweeper;
+package Lab14.Store.minesweeper;
+
+import static Lab14.Store.minesweeper.MineSweeperConstants.COLS;
+import static Lab14.Store.minesweeper.MineSweeperConstants.ROWS;
 
 import java.util.Random;
-import static minesweeper.MineSweeperConstants.ROWS;
-import static minesweeper.MineSweeperConstants.COLS;
 
 public class MineMap {
     

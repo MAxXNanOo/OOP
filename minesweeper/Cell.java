@@ -1,8 +1,8 @@
-package minesweeper;
+package Lab14.Store.minesweeper;
 import java.awt.Color;
 import java.awt.Font;
-import javax.swing.JButton;
-import javax.swing.BorderFactory; // นำเข้าสำหรับเส้นขอบ
+import javax.swing.BorderFactory;
+import javax.swing.JButton; // นำเข้าสำหรับเส้นขอบ
 import javax.swing.border.Border; // นำเข้าสำหรับ Border
 
 public class Cell extends JButton {

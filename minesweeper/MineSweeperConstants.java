@@ -1,4 +1,4 @@
-package minesweeper;
+package Lab14.Store.minesweeper;
 
 public class MineSweeperConstants {
     

@@ -116,9 +116,9 @@ public class GameBoardPanel extends JPanel {
                     }
                 } else if (!cell.isMined() && cell.isFlagged()) {
                     // แสดงว่าปักธงผิด
-                    cell.setBackground(Color.LIGHT_GRAY);
+                    cell.setBackground(Color.lightGray);
                     cell.setText("X"); 
-                    cell.setForeground(Color.RED);
+                    cell.setForeground(Color.pink);
                 }
             }
         }
